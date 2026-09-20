@@ -1,0 +1,21 @@
+[project]
+name = "playwright-framework"
+version = "0.1.0"
+description = "Python Playwright automation framework"
+requires-python = ">=3.11"
+
+dependencies = [
+    "pytest",
+    "playwright",
+    "pyyaml",
+    "pydantic",
+    "requests"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+pythonpath = ["."]
+addopts = "-v"

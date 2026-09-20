@@ -1,0 +1,15 @@
+environment: dev
+
+application:
+  base_url: "https://webdriveruniversity.com/index.html"
+
+
+browser:
+  name: "chromium"
+  headless: false
+  slow_mo: 0
+
+timeouts:
+  default: 10000
+  navigation: 30000
+  expect: 10000
