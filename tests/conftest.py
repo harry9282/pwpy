@@ -2,6 +2,9 @@ import pytest
 
 from src.config.config import Config
 from playwright.sync_api import sync_playwright
+from playwright.sync_api import Playwright, Page,BrowserContext, Browser
+
+
 
 
 
@@ -12,13 +15,13 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="session")
 def config(request):
-    environment=request.config.getoption("--env")
+    environment:str=request.config.getoption("--env")
     return Config(environment)
 
 
 @pytest.fixture(scope="session")
-def playwright():
-    pw= sync_playwright().start()
+def playwright() :
+    pw:Playwright = sync_playwright().start()
     yield pw
     pw.stop()
 #Everything before yield is setup.
@@ -26,19 +29,18 @@ def playwright():
 
 
 @pytest.fixture(scope="session")
-def browser(playwright,config):
+def browser(playwright:Playwright,config:Config):
     browser_name=config.get_browser_name()
     headless=config.get_headless()
     # Dynamically gets the BrowserType property (chromium/firefox/webkit) based on the browser name from config.
     browser_type = getattr(playwright, browser_name)
-    browser_type=getattr(playwright,browser_name)
-    browser=browser_type.launch(headless=headless)
+    browser:Browser=browser_type.launch(headless=headless)
     yield browser
     browser.close()
 
 @pytest.fixture()
-def browser_context(browser):
-    context=browser.new_context()
+def browser_context(browser:Browser):
+    context: BrowserContext=browser.new_context()
     yield context
     context.close()
 
@@ -55,10 +57,11 @@ def browser_context(browser):
 # Navigation gets a separate timeout because page loading can take longer
 # than normal element interactions.
 @pytest.fixture
-def page(config,browser_context):
-    page=browser_context.new_page()
+def page(config:Config,browser_context:BrowserContext):
+    page:Page=browser_context.new_page()
     page.set_default_timeout(config.get_default_timeout())
-    page.set_navigation_timeout(config.get_navigation_timeout())
+    page.set_default_navigation_timeout(config.get_navigation_timeout())
+    page.goto(config.get_base_url())
     yield page
     page.close()
 
