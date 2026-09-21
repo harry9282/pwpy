@@ -72,3 +72,10 @@ def homepage(page):
     homepage=HomePage(page)
     return homepage
 
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call":
+        print(f"TEST: {item.name} | RESULT: {report.outcome}")
