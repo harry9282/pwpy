@@ -1,54 +1,30 @@
-playwright-framework/
-│
-├── pyproject.toml
-│
-├── config/
-│   ├── config.dev.yaml
-│   ├── config.qa.yaml
-│   └── config.prod.yaml
-│
-├── src/
-│   │
-│   ├── config/
-│   │   └── config.py
-│   │
-│   ├── pages/
-│   │   ├── base_page.py
-│   │   ├── login_page.py
-│   │   └── home_page.py
-│   │
-│   ├── api/
-│   │   ├── base_client.py
-│   │   ├── user_client.py
-│   │   └── auth_client.py
-│   │
-│   ├── models/
-│   │   ├── requests/
-│   │   │   └── user_request.py
-│   │   │
-│   │   └── responses/
-│   │       └── user_response.py
-│   │
-│   ├── utils/
-│   │   ├── logger.py
-│   │   └── ...
-│   │
-│   └── constants/
-│       └── ...
-│
-├── tests/
-│   │
-│   ├── conftest.py
-│   │
-│   ├── ui/
-│   │   ├── test_login.py
-│   │   └── test_home.py
-│   │
-│   └── api/
-│       └── test_users.py
-│
-├── test-data/
-│   ├── ui/
-│   └── api/
-│
-└── reports/
+Phase 1 — Framework infrastructure
+Logging
+    ↓
+Reporting
+    ↓
+Failure screenshots
+    ↓
+Trace/video
+    ↓
+Assertion reporting
+Phase 2 — Browser infrastructure
+Browser
+Context
+Storage state
+Cookies
+Downloads
+Multiple tabs
+Phase 3 — Test infrastructure
+pytest hooks
+markers
+test data
+parallel execution
+retry strategy
+Phase 4
+CI/CD
+Docker
+
+And throughout this, Page Objects remain simple and readable Playwright code.
+
+That's actually a very good architecture philosophy for an experienced SDET: abstract the things that need standardization; don't abstract things that Playwright already expresses clearly.

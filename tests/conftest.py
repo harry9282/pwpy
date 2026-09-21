@@ -1,11 +1,9 @@
 import pytest
 
 from src.config.config import Config
+from src.pages.homepage import HomePage
 from playwright.sync_api import sync_playwright
 from playwright.sync_api import Playwright, Page,BrowserContext, Browser
-
-
-
 
 
 def pytest_addoption(parser):
@@ -46,6 +44,9 @@ def browser_context(browser:Browser):
 
 
 
+
+
+
 # Default timeout:
 # Maximum time Playwright waits for normal actions such as locating,
 # clicking, filling, or interacting with elements before timing out.
@@ -66,4 +67,8 @@ def page(config:Config,browser_context:BrowserContext):
     page.close()
 
 
+@pytest.fixture
+def homepage(page):
+    homepage=HomePage(page)
+    return homepage
 

@@ -24,3 +24,6 @@ dist/
 # Environment / secrets
 .env
 .env.*
+
+#logs
+.logs/
