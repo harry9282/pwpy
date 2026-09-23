@@ -27,3 +27,24 @@ dist/
 
 #logs
 logs/
+
+#traces
+traces/
+
+#videos
+videos/
+
+#screenshots
+screenshots/
+#
+allure-results/
+
+
+AI_CONTEXT.md
+
+framework.md
+Gemini.md
+learning.md
+
+
+downloads/

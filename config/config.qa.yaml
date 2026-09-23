@@ -1,11 +1,10 @@
 environment: qa
 
 application:
-  base_url: "https://webdriveruniversity.com/index.html"
-
+  base_url: "https://xyz.abc.com"
 
 browser:
-  name: "webkit"
+  name: "chromium"
   headless: false
   slow_mo: 0
 

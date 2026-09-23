@@ -13,9 +13,13 @@ dependencies = [
 ]
 
 [tool.pytest.ini_options]
+markers = [
+    "sanity: All critical path tests",
+    "regression: All standard test cases",
+]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
 pythonpath = ["."]
-addopts = "-v"
+addopts = "-v --tb=short --alluredir=./allure-results"
